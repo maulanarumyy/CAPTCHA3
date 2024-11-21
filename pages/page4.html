@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA ILUSTRATION</title>
+    <link rel="stylesheet" href="style/loginstyle.css">
+</head>
+<body>
+
+    <div class="captcha-container">
+        <img src="../pictures/swingset.png" alt="Gambar hewan peliharaan yang lucu" />
+        <h3>Kamu ingin bermain ayunan di taman. Siapakah orang yang kamu ajak untuk bermain bersama?</h3>
+        <div class="options">
+            <!-- Each option contains an image with an onclick event -->
+            <div class="option">
+                <img src="../pictures/man.png" alt="RandomMan" onclick="checkAnswer('RandomMan')">
+                <p>Random Man</p>
+            </div>
+            <div class="option">
+                <img src="../pictures/kid.png" alt="Friends" onclick="checkAnswer('Friends')">
+                <p>Friends</p>
+            </div>
+            <div class="option">
+                <img src="../pictures/granpa.png" alt="Granpa" onclick="checkAnswer('Granpa')">
+                <p>Granpa</p>
+            </div>
+        </div>
+        <div id="success" class="success-message">CAPTCHA berhasil diselesaikan!</div>
+        <div id="error" class="error-message">Jawaban salah, coba lagi.</div>
+    </div>
+
+    <script>
+        function checkAnswer(answer) {
+            const successMessage = document.getElementById("success");
+            const errorMessage = document.getElementById("error");
+
+            if (answer === "Friends") {
+                successMessage.style.display = "block";
+                errorMessage.style.display = "none";
+                window.parent.postMessage('CAPTCHA_SUCCESS', '*');
+                window.location.href = 'https://mathewsin.github.io/CaptchaTester/';
+            } else {
+                errorMessage.style.display = "block";
+                successMessage.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

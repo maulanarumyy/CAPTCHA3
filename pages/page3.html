@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA ILUSTRATION</title>
+    <link rel="stylesheet" href="style/loginstyle.css">
+</head>
+<body>
+
+    <div class="captcha-container">
+        <img src="../pictures/bedroom.png" alt="Gambar hewan peliharaan yang lucu" />
+        <h3>Kamu ingin tidur nyenyak di malam hari. Barang apa yang akan membantu Kamu untuk mendapatkan suasana tidur yang nyaman?</h3>
+        <div class="options">
+            <!-- Each option contains an image with an onclick event -->
+            <div class="option">
+                <img src="../pictures/radio.png" alt="Radio" onclick="checkAnswer('Radio')">
+                <p>Radio</p>
+            </div>
+            <div class="option">
+                <img src="../pictures/pillow.png" alt="Bantal" onclick="checkAnswer('Bantal')">
+                <p>Bantal</p>
+            </div>
+            <div class="option">
+                <img src="../pictures/spoon.png" alt="Sendok" onclick="checkAnswer('Sendok')">
+                <p>Sendok</p>
+            </div>
+        </div>
+        <div id="success" class="success-message">CAPTCHA berhasil diselesaikan!</div>
+        <div id="error" class="error-message">Jawaban salah, coba lagi.</div>
+    </div>
+
+    <script>
+        function checkAnswer(answer) {
+            const successMessage = document.getElementById("success");
+            const errorMessage = document.getElementById("error");
+
+            if (answer === "Bantal") {
+                successMessage.style.display = "block";
+                errorMessage.style.display = "none";
+                window.parent.postMessage('CAPTCHA_SUCCESS', '*');
+                window.location.href = 'https://mathewsin.github.io/CaptchaTester/';
+            } else {
+                errorMessage.style.display = "block";
+                successMessage.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
